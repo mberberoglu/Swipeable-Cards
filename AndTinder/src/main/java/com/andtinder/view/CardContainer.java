@@ -57,6 +57,7 @@ public class CardContainer extends AdapterView<ListAdapter> {
 
     //TODO: determine max dynamically based on device speed
     private int mMaxVisible = 10;
+    private int cardIndex = 0;
     private GestureDetector mGestureDetector;
     private int mFlingSlop;
     private Orientation mOrientation;
@@ -451,12 +452,13 @@ public class CardContainer extends AdapterView<ListAdapter> {
                 if(mTopCard != null)
                     mTopCard.setLayerType(LAYER_TYPE_HARDWARE, null);
 
-                if (cardModel.getOnCardDimissedListener() != null) {
+                if (cardModel.getOnCardDismissedListener() != null) {
                     if ( targetX > 0 ) {
-                        cardModel.getOnCardDimissedListener().onLike();
+                        cardModel.getOnCardDismissedListener().onLike();
                     } else {
-                        cardModel.getOnCardDimissedListener().onDislike();
+                        cardModel.getOnCardDismissedListener().onDislike();
                     }
+                    cardModel.getOnCardDismissedListener().remainCount(mListAdapter.getCount() - ++cardIndex);
                 }
 
                 topCard.animate()

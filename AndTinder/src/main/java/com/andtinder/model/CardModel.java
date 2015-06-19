@@ -37,6 +37,7 @@ public class CardModel {
     public interface OnCardDismissedListener {
         void onLike();
         void onDislike();
+		void remainCount(int count);
     }
 
     public interface OnClickListener {
